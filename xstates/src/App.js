@@ -14,7 +14,6 @@ function App() {
       .then((value) => value.json())
       .then((value) => {
         setCountry(value);
-        
       })
       .catch((e) => {
         console.log(e.response);
@@ -57,7 +56,7 @@ function App() {
           value={selectedCountry}
           onChange={(e) => {
             setSelectedCountry(e.target.value);
-            setSelectedState('');
+            setSelectedState("");
           }}
         >
           <option value={""} disabled>
@@ -72,7 +71,7 @@ function App() {
             value={selectedState}
             onChange={(e) => {
               setSelectedState(e.target.value);
-              setSelectedCity('')
+              setSelectedCity("");
             }}
           >
             <option value={""} disabled>
@@ -102,10 +101,16 @@ function App() {
           </select>
         ) : (
           <select value={""} disabled>
-            <option value={""} >Select City</option>
+            <option value={""}>Select City</option>
           </select>
         )}
       </div>
+      {selectedCountry && (selectedState && selectedCity) ? (
+        <div>
+          You selected <span>{selectedCity},</span>{" "}
+          <span>{selectedState},</span> <span>{selectedCountry}</span>{" "}
+        </div>
+      ) : null}
     </div>
   );
 }
